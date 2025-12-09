@@ -163,7 +163,7 @@ function CardInfoDisplay({ data }: CardInfoDisplayProps) {
                     1
                   </div>
                   <div className="flex-1">
-                    <div className="font-bold text-gray-900 mb-2 text-base">复制"卡号"</div>
+                     <div className="font-bold text-gray-900 mb-2 text-base">复制【卡号】</div>
                     <div className="bg-blue-50 p-3 rounded border border-blue-200">
                       <div className="text-xs text-gray-500 mb-1">👆 点击上方卡号旁边的复制按钮</div>
                       <div className="font-mono text-lg font-bold text-blue-900">{result.card_number}</div>
@@ -182,7 +182,7 @@ function CardInfoDisplay({ data }: CardInfoDisplayProps) {
                     2
                   </div>
                   <div className="flex-1">
-                    <div className="font-bold text-gray-900 mb-2 text-base">复制"有效期"</div>
+                     <div className="font-bold text-gray-900 mb-2 text-base">复制【有效期】</div>
                     <div className="bg-blue-50 p-3 rounded border border-blue-200">
                       <div className="text-xs text-gray-500 mb-1">👆 点击上方有效期旁边的复制按钮</div>
                       <div className="font-mono text-lg font-bold text-blue-900">{result.card_exp_date}</div>
@@ -201,7 +201,7 @@ function CardInfoDisplay({ data }: CardInfoDisplayProps) {
                     3
                   </div>
                   <div className="flex-1">
-                    <div className="font-bold text-gray-900 mb-2 text-base">复制"CVC"</div>
+                     <div className="font-bold text-gray-900 mb-2 text-base">复制【CVC】</div>
                     <div className="bg-blue-50 p-3 rounded border border-blue-200">
                       <div className="text-xs text-gray-500 mb-1">👆 点击上方CVC旁边的复制按钮</div>
                       <div className="font-mono text-lg font-bold text-blue-900">{result.card_cvc}</div>
@@ -243,7 +243,7 @@ function CardInfoDisplay({ data }: CardInfoDisplayProps) {
                     5
                   </div>
                   <div className="flex-1">
-                    <div className="font-bold text-gray-900 mb-2 text-base">填写"持卡人姓名"</div>
+                     <div className="font-bold text-gray-900 mb-2 text-base">填写【持卡人姓名】</div>
                     <div className="bg-red-50 p-3 rounded border border-red-200">
                       <div className="text-sm text-red-900 font-bold mb-2">
                         ⚠️ 这一项<span className="bg-red-600 text-white px-2 py-1 rounded mx-1">不用复制</span>自己随便写一个英文名
@@ -269,7 +269,7 @@ function CardInfoDisplay({ data }: CardInfoDisplayProps) {
                     6
                   </div>
                   <div className="flex-1">
-                    <div className="font-bold text-gray-900 mb-2 text-base">填写"邮编"</div>
+                     <div className="font-bold text-gray-900 mb-2 text-base">填写【邮编】</div>
                     <div className="bg-red-50 p-3 rounded border border-red-200">
                       <div className="text-sm text-red-900 font-bold mb-2">
                         ⚠️ 固定填这个数字，<span className="bg-red-600 text-white px-2 py-1 rounded mx-1">不要改</span>
@@ -292,7 +292,7 @@ function CardInfoDisplay({ data }: CardInfoDisplayProps) {
                     7
                   </div>
                   <div className="flex-1">
-                    <div className="font-bold text-gray-900 mb-2 text-base">点击"保存卡"按钮</div>
+                     <div className="font-bold text-gray-900 mb-2 text-base">点击【保存卡】按钮</div>
                     <div className="bg-white p-4 rounded border border-blue-200 text-center">
                       <div className="bg-blue-600 text-white px-6 py-3 rounded-lg inline-block font-bold">
                         保存卡
@@ -309,7 +309,7 @@ function CardInfoDisplay({ data }: CardInfoDisplayProps) {
                     8
                   </div>
                   <div className="flex-1">
-                    <div className="font-bold text-gray-900 mb-2 text-base">点击"订阅"按钮</div>
+                     <div className="font-bold text-gray-900 mb-2 text-base">点击【订阅】按钮</div>
                     <div className="bg-white p-4 rounded border border-blue-200 text-center">
                       <div className="bg-blue-600 text-white px-8 py-3 rounded-lg inline-block font-bold">
                         订阅

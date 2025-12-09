@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>傻瓜式绑定教程 - 卡片激活后效果</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 50%, #dbeafe 100%);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .page-title {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .page-title h1 {
+            font-size: 28px;
+            color: #1f2937;
+            margin: 0;
+        }
+        .card-box {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            padding: 24px;
+        }
+        .field-row {
+            margin-bottom: 16px;
+        }
+        .field-label {
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+        .field-value {
+            font-family: 'Courier New', monospace;
+            color: #1e293b;
+            background: #eff6ff;
+            padding: 6px 12px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .copy-btn {
+            background: none;
+            border: none;
+            color: #64748b;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .copy-btn:hover {
+            color: #2563eb;
+        }
+        .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .badge {
+            font-size: 12px;
+            background: #f1f5f9;
+            color: #64748b;
+            padding: 4px 12px;
+            border-radius: 4px;
+        }
+        .divider {
+            margin: 24px 0;
+            padding-top: 24px;
+            border-top: 2px dashed #e2e8f0;
+        }
+        .guide-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .guide-title h3 {
+            font-size: 16px;
+            color: #1f2937;
+            margin: 0;
+        }
+        .mapping-list {
+            margin-bottom: 16px;
+        }
+        .mapping-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #64748b;
+        }
+        .mapping-label {
+            width: 70px;
+            text-align: right;
+            font-weight: 500;
+            color: #475569;
+        }
+        .arrow {
+            color: #3b82f6;
+        }
+        .tip-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        .tip-box-title {
+            font-weight: 600;
+            font-size: 14px;
+            color: #1f2937;
+            margin-bottom: 4px;
+        }
+        .tip-box-desc {
+            font-size: 14px;
+            color: #64748b;
+        }
+        .highlight {
+            font-weight: 700;
+            color: #92400e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="page-title">
+            <h1>激活卡片 & 交易记录查询</h1>
+        </div>
+
+        <div class="card-box">
+            <!-- 卡密 -->
+            <div class="field-row">
+                <div class="header-row">
+                    <div class="field-label">卡密</div>
+                    <div class="badge">额度: ¥500</div>
+                </div>
+                <div class="field-value">
+                    ABC123XYZ456DEF789GHI012
+                    <button class="copy-btn" title="复制">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 卡号 -->
+            <div class="field-row">
+                <div class="field-label">卡号</div>
+                <div class="field-value">
+                    4532 1234 5678 9010
+                    <button class="copy-btn" title="复制">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 有效期 -->
+            <div class="field-row">
+                <div class="field-label">有效期</div>
+                <div class="field-value">
+                    12/31
+                    <button class="copy-btn" title="复制">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- CVC -->
+            <div class="field-row">
+                <div class="field-label">CVC</div>
+                <div class="field-value">
+                    123
+                    <button class="copy-btn" title="复制">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 到期时间 -->
+            <div class="field-row">
+                <div class="field-label">到期时间</div>
+                <div style="color: #1e293b;">2025-12-31 23:59:59</div>
+            </div>
+
+           <!-- 超级傻瓜式教程 -->
+            <div class="divider">
+                <div style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); padding: 16px; border-radius: 12px; margin-bottom: 20px; border: 2px solid #3b82f6;">
+                    <h3 style="font-size: 18px; font-weight: bold; color: #1e40af; margin: 0 0 8px 0;">💳 绑定 Google 支付填写教程</h3>
+                    <p style="margin: 0; font-size: 14px; color: #64748b;">按照下面8个步骤，复制对应信息填入 Google 支付即可</p>
+                </div>
+
+                <!-- 步骤1 -->
+                <div style="background: white; border: 3px solid #3b82f6; border-radius: 12px; padding: 16px; margin-bottom: 16px;">
+                    <div style="display: flex; gap: 12px;">
+                        <div style="background: #3b82f6; color: white; font-weight: bold; font-size: 20px; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            1
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: bold; color: #1f2937; margin-bottom: 8px; font-size: 16px;">复制"卡号"</div>
+                            <div style="background: #dbeafe; padding: 12px; border-radius: 8px; border: 2px solid #93c5fd; margin-bottom: 8px;">
+                                <div style="font-size: 12px; color: #64748b; margin-bottom: 4px;">👆 点击上方卡号旁边的复制按钮</div>
+                                <div style="font-family: 'Courier New', monospace; font-size: 18px; font-weight: bold; color: #1e40af;">4532 1234 5678 9010</div>
+                            </div>
+                            <div style="background: #fef3c7; padding: 8px 12px; border-radius: 6px; font-size: 14px; color: #92400e;">
+                                👉 粘贴到 Google 支付的 <strong style="background: #fbbf24; padding: 2px 6px; border-radius: 4px;">Card number</strong> 框
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 步骤2 -->
+                <div style="background: white; border: 3px solid #3b82f6; border-radius: 12px; padding: 16px; margin-bottom: 16px;">
+                    <div style="display: flex; gap: 12px;">
+                        <div style="background: #3b82f6; color: white; font-weight: bold; font-size: 20px; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            2
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: bold; color: #1f2937; margin-bottom: 8px; font-size: 16px;">复制"有效期"</div>
+                            <div style="background: #dbeafe; padding: 12px; border-radius: 8px; border: 2px solid #93c5fd; margin-bottom: 8px;">
+                                <div style="font-size: 12px; color: #64748b; margin-bottom: 4px;">👆 点击上方有效期旁边的复制按钮</div>
+                                <div style="font-family: 'Courier New', monospace; font-size: 18px; font-weight: bold; color: #1e40af;">12/31</div>
+                            </div>
+                            <div style="background: #fef3c7; padding: 8px 12px; border-radius: 6px; font-size: 14px; color: #92400e;">
+                                👉 粘贴到 Google 支付的 <strong style="background: #fbbf24; padding: 2px 6px; border-radius: 4px;">MM/YY</strong> 框
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 步骤3 -->
+                <div style="background: white; border: 3px solid #3b82f6; border-radius: 12px; padding: 16px; margin-bottom: 16px;">
+                    <div style="display: flex; gap: 12px;">
+                        <div style="background: #3b82f6; color: white; font-weight: bold; font-size: 20px; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            3
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: bold; color: #1f2937; margin-bottom: 8px; font-size: 16px;">复制"CVC"</div>
+                            <div style="background: #dbeafe; padding: 12px; border-radius: 8px; border: 2px solid #93c5fd; margin-bottom: 8px;">
+                                <div style="font-size: 12px; color: #64748b; margin-bottom: 4px;">👆 点击上方CVC旁边的复制按钮</div>
+                                <div style="font-family: 'Courier New', monospace; font-size: 18px; font-weight: bold; color: #1e40af;">123</div>
+                            </div>
+                            <div style="background: #fef3c7; padding: 8px 12px; border-radius: 6px; font-size: 14px; color: #92400e;">
+                                👉 粘贴到 Google 支付的 <strong style="background: #fbbf24; padding: 2px 6px; border-radius: 4px;">Security code</strong> 框
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+               <!-- 步骤4 -->
+                <div style="background: #fff7ed; border: 3px solid #f59e0b; border-radius: 12px; padding: 16px; margin-bottom: 16px;">
+                    <div style="display: flex; gap: 12px;">
+                        <div style="background: #f59e0b; color: white; font-weight: bold; font-size: 20px; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            4
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: bold; color: #1f2937; margin-bottom: 8px; font-size: 16px;">选择国家/地区</div>
+                            <div style="background: #fee2e2; padding: 12px; border-radius: 8px; border: 2px solid #fca5a5; margin-bottom: 8px;">
+                                <div style="font-size: 14px; color: #991b1b; font-weight: bold; margin-bottom: 8px;">
+                                    ⚠️ 必须选择 <span style="background: #dc2626; color: white; padding: 2px 8px; border-radius: 4px; margin: 0 4px;">美国 (US)</span>
+                                </div>
+                                <div style="background: white; padding: 12px; border-radius: 8px; text-align: center;">
+                                    <div style="font-size: 18px; font-weight: bold; color: #ea580c;">🇺🇸 United States (US)</div>
+                                </div>
+                            </div>
+                            <div style="background: #fef3c7; padding: 8px 12px; border-radius: 6px; font-size: 14px; color: #92400e;">
+                                👉 在 <strong style="background: #fbbf24; padding: 2px 6px; border-radius: 4px;">Country/region</strong> 下拉框选择美国
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 步骤5 -->
+                <div style="background: #fff7ed; border: 3px solid #f59e0b; border-radius: 12px; padding: 16px; margin-bottom: 16px;">
+                    <div style="display: flex; gap: 12px;">
+                        <div style="background: #f59e0b; color: white; font-weight: bold; font-size: 20px; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            5
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: bold; color: #1f2937; margin-bottom: 8px; font-size: 16px;">填写"持卡人姓名"</div>
+                            <div style="background: #fee2e2; padding: 12px; border-radius: 8px; border: 2px solid #fca5a5; margin-bottom: 8px;">
+                                <div style="font-size: 14px; color: #991b1b; font-weight: bold; margin-bottom: 8px;">
+                                    ⚠️ 这一项<span style="background: #dc2626; color: white; padding: 2px 8px; border-radius: 4px; margin: 0 4px;">不用复制</span>自己随便写一个英文名
+                                </div>
+                                <div style="font-size: 13px; color: #64748b; margin-bottom: 6px;">示例（任选一个或自己编）：</div>
+                                <div style="background: white; padding: 8px; border-radius: 6px;">
+                                    <div style="font-family: 'Courier New', monospace; font-size: 14px; margin: 4px 0;">✓ Zhang San</div>
+                                    <div style="font-family: 'Courier New', monospace; font-size: 14px; margin: 4px 0;">✓ Li Si</div>
+                                    <div style="font-family: 'Courier New', monospace; font-size: 14px; margin: 4px 0;">✓ Wang Wu</div>
+                                </div>
+                            </div>
+                            <div style="background: #fef3c7; padding: 8px 12px; border-radius: 6px; font-size: 14px; color: #92400e;">
+                                👉 填入 Google 支付的 <strong style="background: #fbbf24; padding: 2px 6px; border-radius: 4px;">Cardholder name</strong> 框
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 步骤6 -->
+                <div style="background: #fff7ed; border: 3px solid #f59e0b; border-radius: 12px; padding: 16px; margin-bottom: 16px;">
+                    <div style="display: flex; gap: 12px;">
+                        <div style="background: #f59e0b; color: white; font-weight: bold; font-size: 20px; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            6
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: bold; color: #1f2937; margin-bottom: 8px; font-size: 16px;">填写"邮编"</div>
+                            <div style="background: #fee2e2; padding: 12px; border-radius: 8px; border: 2px solid #fca5a5; margin-bottom: 8px;">
+                                <div style="font-size: 14px; color: #991b1b; font-weight: bold; margin-bottom: 8px;">
+                                    ⚠️ 固定填这个数字，<span style="background: #dc2626; color: white; padding: 2px 8px; border-radius: 4px; margin: 0 4px;">不要改</span>
+                                </div>
+                                <div style="background: white; padding: 16px; border-radius: 8px; text-align: center;">
+                                    <div style="font-family: 'Courier New', monospace; font-size: 32px; font-weight: bold; color: #ea580c; letter-spacing: 4px;">82240</div>
+                                </div>
+                            </div>
+                            <div style="background: #fef3c7; padding: 8px 12px; border-radius: 6px; font-size: 14px; color: #92400e;">
+                                👉 填入 Google 支付的 <strong style="background: #fbbf24; padding: 2px 6px; border-radius: 4px;">Billing zip code</strong> 框
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 步骤7 -->
+                <div style="background: #eff6ff; border: 3px solid #3b82f6; border-radius: 12px; padding: 16px; margin-bottom: 16px;">
+                    <div style="display: flex; gap: 12px;">
+                        <div style="background: #3b82f6; color: white; font-weight: bold; font-size: 20px; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            7
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: bold; color: #1f2937; margin-bottom: 8px; font-size: 16px;">点击"保存卡"按钮</div>
+                            <div style="background: white; padding: 16px; border-radius: 8px; border: 2px solid #93c5fd; text-align: center;">
+                                <div style="background: #2563eb; color: white; padding: 12px 24px; border-radius: 8px; display: inline-block; font-size: 16px; font-weight: bold;">
+                                    保存卡
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 步骤8 -->
+                <div style="background: #eff6ff; border: 3px solid #3b82f6; border-radius: 12px; padding: 16px; margin-bottom: 16px;">
+                    <div style="display: flex; gap: 12px;">
+                        <div style="background: #3b82f6; color: white; font-weight: bold; font-size: 20px; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                            8
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: bold; color: #1f2937; margin-bottom: 8px; font-size: 16px;">点击"订阅"按钮</div>
+                            <div style="background: white; padding: 16px; border-radius: 8px; border: 2px solid #93c5fd; text-align: center;">
+                                <div style="background: #2563eb; color: white; padding: 12px 32px; border-radius: 8px; display: inline-block; font-size: 16px; font-weight: bold;">
+                                    订阅
+                                </div>
+                            </div>
+                            <div style="margin-top: 12px; font-size: 14px; color: #1f2937;">
+                                完成订阅后即可使用服务
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 完成提示 -->
+                <div style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); border: 3px solid #10b981; border-radius: 12px; padding: 16px; margin-bottom: 16px;">
+                    <div style="display: flex; gap: 12px; align-items: center;">
+                        <span style="font-size: 32px;">✅</span>
+                        <div>
+                            <div style="font-weight: bold; font-size: 18px; color: #065f46; margin-bottom: 4px;">完成！</div>
+                            <div style="font-size: 14px; color: #047857;">按照上面8个步骤填写，就能成功绑定 Google 支付并完成订阅了！</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 失败提示 -->
+                <div style="background: #fef2f2; border: 3px solid #ef4444; border-radius: 12px; padding: 16px;">
+                    <div style="display: flex; gap: 12px;">
+                        <span style="font-size: 28px;">⚠️</span>
+                        <div>
+                            <div style="font-weight: bold; font-size: 16px; color: #991b1b; margin-bottom: 8px;">如果绑定失败怎么办？</div>
+                            <div style="font-size: 14px; color: #7f1d1d; line-height: 1.6;">
+                                请返回购买页面联系客服，我们会帮您解决问题。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
